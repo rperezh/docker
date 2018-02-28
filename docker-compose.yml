@@ -1,0 +1,26 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:latest
+    ports:
+      - 3306
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: myrtpwd
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypass
+    networks:
+      - net
+
+  apache:
+    image: apache:2.0
+    ports:
+      - 80
+    restart: always
+    networks:
+      - net
+
+networks:
+  net:
+    driver: bridge
