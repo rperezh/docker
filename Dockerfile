@@ -22,6 +22,9 @@ ENV APACHE_LOG_DIR=/var/log/apache2
 #ENV APACHE_RUN_DIR=/var/run/apache2
 #ENV APACHE_LOCK_DIR=/var/lock/apache2
 
+COPY joomla-install.sh /joomla-install.sh
+RUN ["/joomla-install.sh"]
+
 EXPOSE 80
 EXPOSE 443
 

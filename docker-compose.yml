@@ -7,20 +7,25 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: myrtpwd
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: myuser
-      MYSQL_PASSWORD: mypass
+      MYSQL_DATABASE: joomladb
+      MYSQL_USER: joomlauser
+      MYSQL_PASSWORD: joomlapassword
     networks:
-      - net
+      - private
 
-  apache:
+  joomla:
     image: apache:2.0
     ports:
       - 80
     restart: always
     networks:
-      - net
+      - public
+      - private
+    depends_on:
+      - mysql
 
 networks:
-  net:
+  public:
+    driver: bridge
+  private:
     driver: bridge
